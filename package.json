@@ -4,7 +4,7 @@
   "description": "Weixin Miniprogram API Enhanced for TypeScript Support",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc --noEmit"
   },
   "author": "Mirus",
   "license": "ISC",
