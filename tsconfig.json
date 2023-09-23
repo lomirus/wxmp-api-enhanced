@@ -8,4 +8,5 @@
     "skipLibCheck": true,
     "types": ["miniprogram-api-typings"]
   },
+  "include": ["src/**/*", "tests/**/*"]
 }
