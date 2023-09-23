@@ -131,19 +131,21 @@ const defineBehavior = <
 
   const id = Behavior<TData, TProperty, TMethod, TCustom>({
     behaviors: behaviors?.map((behavior: TBehavior) => behavior.id),
-    lifetimes: {
-      ...lifetimes,
-      created() {
-        Object.entries(options)
-          .filter(([key]: [string, unknown]) =>
-            !OPTIONS_KEYS.includes(key as any)
-          )
-          .forEach((
-            [key, value]: [keyof TCustom, unknown],
-          ) => ((this as any)[key] = value));
-        lifetimes?.created?.apply(this);
-      },
-    },
+    // 由于 options 浅拷贝的原因，暂时禁用掉在 created 阶段自动初始化自定义实例参数的功能。
+    lifetimes: lifetimes,
+    // lifetimes: {
+    //   ...lifetimes,
+    //   created() {
+    //     Object.entries(options)
+    //       .filter(([key]: [string, unknown]) =>
+    //         !OPTIONS_KEYS.includes(key as any)
+    //       )
+    //       .forEach((
+    //         [key, value]: [keyof TCustom, unknown],
+    //       ) => ((this as any)[key] = value));
+    //     lifetimes?.created?.apply(this);
+    //   },
+    // },
     // 由于旧版 API 的 `definitionFilter()` 的首个参数 `defFields` 不支持顶层自定义属性，因此直接赋值会导致类型不匹配
     // 但是实际上运行时支持此功能，所以此处将其强制转换为 any 类型以绕过类型检查
     definitionFilter: definitionFilter as any,

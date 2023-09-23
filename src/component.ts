@@ -90,17 +90,19 @@ const defineComponent = <
 
   return Component<TData, TProperty, TMethod, TAllOptions>({
     behaviors: behaviors?.map((behavior: TBehavior) => behavior.id),
-    lifetimes: {
-      ...lifetimes,
-      created() {
-        Object.entries(options)
-          .filter(([key]) => !(OPTIONS_KEYS).includes(key as any))
-          .forEach(([key, value]) => {
-            (this as any)[key] = value;
-          });
-        options.lifetimes?.created?.apply(this);
-      },
-    },
+    // 由于 options 浅拷贝的原因，暂时禁用掉在 created 阶段自动初始化自定义实例参数的功能。
+    lifetimes: lifetimes,
+    // lifetimes: {
+    //   ...lifetimes,
+    //   created() {
+    //     Object.entries(options)
+    //       .filter(([key]) => !(OPTIONS_KEYS).includes(key as any))
+    //       .forEach(([key, value]) => {
+    //         (this as any)[key] = value;
+    //       });
+    //     options.lifetimes?.created?.apply(this);
+    //   },
+    // },
     ...restOptions,
   });
 };
