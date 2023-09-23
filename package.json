@@ -1,0 +1,15 @@
+{
+  "name": "wxmp-api-enhanced",
+  "version": "0.1.0",
+  "description": "Weixin Miniprogram API Enhanced for TypeScript Support",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mirus",
+  "license": "ISC",
+  "devDependencies": {
+    "miniprogram-api-typings": "^3.12.0",
+    "typescript": "^5.2.2"
+  }
+}
